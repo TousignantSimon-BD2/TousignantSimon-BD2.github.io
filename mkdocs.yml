@@ -1,6 +1,4 @@
 site_name: Cours Bases de donn&eacute;es 2
-site_url: https://bd2.kerzo.ca/
-repo_url: https://github.com/jaixan/db2
 
 nav:
   - 'Accueil': index.md
