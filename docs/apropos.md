@@ -3,3 +3,4 @@
 
 Version originale du site par Mathieu Fréchette (2023)  
 Mise à jour en 2024 par Étienne Rivard  
+Reprise en 2025 par Simon Tousignant
