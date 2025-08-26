@@ -50,3 +50,18 @@ Cet exemple illustre la complexité et l'interdépendance des entités dans une 
 
 !!! Note "Astuce"
     Les multiplicités sont importantes pour déterminer les contraintes. Un truc pour les lire est de commencer par le nom de l'entité, ensuite le verbe de l'association, la multiplicité et finalement la deuxième entité. Si on prend par exemple l'association Rédige, on va lire que l'auteur peut rédiger entre 0 et plusieurs livres (0..\*). À l'inverse un livre peut être rédigé par au moins un auteur mais aussi par plusieurs (1..\*).
+
+
+## Multiplicité
+
+| Signification                          | Notation          | Remarques                                       |
+|----------------------------------------|-------------------|-------------------------------------------------|
+| Un et un seul                          | `1..1`            |                                                 |
+| Synonyme de un seul                   | `1`               |                                                 |
+| Zéro ou un                             | `0..1`            |                                                 |
+| Un nombre quelconque incluant 0       | `0..*`            |                                                 |
+| Synonyme de 0..*                      | `*`               |                                                 |
+| Au moins 1                             | `1..*`            |                                                 |
+| Exactement n                           | `n`               | Remplacer `n` par une valeur entière précise    |
+| Entre n et m inclusif                  | `n..m`            | Remplacer `n` et `m` par les bornes souhaitées  |
+| Liste (union de cas)                   | `2..4,8,12,20..24`| Interprété comme : 2 à 4 **OU** 8 **OU** 12 **OU** 20 à 24 |
