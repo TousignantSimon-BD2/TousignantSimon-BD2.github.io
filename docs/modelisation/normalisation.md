@@ -173,6 +173,10 @@ Considérons, à titre d'exemple, la table d'inventaire suivante :
 
 Dans cette table, l'attribut `NOM_DEPARTEMENT` dépend de `CODE_DEPARTEMENT` et non directement de la clé primaire `EMPLOYE_ID`. Pour rendre la table conforme à la 3FN, il conviendrait de retirer l'attribut `NOM_DEPARTEMENT` de cette table, à condition que cette information soit déjà contenue dans une table distincte associée aux `CODE_DEPARTEMENT*`(par exemple, une table `DEPARTEMENTS`). Cette séparation permet d'éliminer les dépendances transitives et d'assurer que chaque attribut non-clé est directement dépendant de la clé primaire seule, garantissant ainsi l'intégrité et la normalisation des données.
 
+La subtilitée ici c'est que contrairement à la 2FN, les codes de département ne font pas parti de la clé. La 2FN parle de dépendence avec la clé, ici on parle d'un attribut (une colonne) qui a une dépendence sur un attribut qui n'est pas une clé.
+
+Il faut donc sortir le nom du département et créer une table de départements avec un code en clé étrangère.
+
 ## Impact de l'application de la règle
 
 - Permets d'éliminer plusieurs redondances des données.
