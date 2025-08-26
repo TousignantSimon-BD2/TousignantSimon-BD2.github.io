@@ -2691,6 +2691,8 @@ Donc, aucun attribut ne doit être dépendant uniquement d'une partie d'une clé
 </tbody>
 </table>
 <p>Dans cette table, l'attribut <code>NOM_DEPARTEMENT</code> dépend de <code>CODE_DEPARTEMENT</code> et non directement de la clé primaire <code>EMPLOYE_ID</code>. Pour rendre la table conforme à la 3FN, il conviendrait de retirer l'attribut <code>NOM_DEPARTEMENT</code> de cette table, à condition que cette information soit déjà contenue dans une table distincte associée aux <code>CODE_DEPARTEMENT*</code>(par exemple, une table <code>DEPARTEMENTS</code>). Cette séparation permet d'éliminer les dépendances transitives et d'assurer que chaque attribut non-clé est directement dépendant de la clé primaire seule, garantissant ainsi l'intégrité et la normalisation des données.</p>
+<p>La subtilitée ici c'est que contrairement à la 2FN, les codes de département ne font pas parti de la clé. La 2FN parle de dépendence avec la clé, ici on parle d'un attribut (une colonne) qui a une dépendence sur un attribut qui n'est pas une clé.</p>
+<p>Il faut donc sortir le nom du département et créer une table de départements avec un code en clé étrangère.</p>
 <h2 id="impact-de-lapplication-de-la-regle_2">Impact de l'application de la règle</h2>
 <ul>
 <li>Permets d'éliminer plusieurs redondances des données.</li>
