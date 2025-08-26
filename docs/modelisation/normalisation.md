@@ -99,11 +99,18 @@ Ces modifications permettent à chaque table de respecter la première forme nor
 Pour qu'une table de données soit conforme à la deuxième forme normale (2FN), elle doit remplir les conditions suivantes :
 
 - Être déjà conforme à la première forme normale (1FN).
-- Assurer que chaque attribut non-clé dépende entièrement de la clé primaire, ou des clés primaires dans le cas d'une clé composite. Cela signifie qu'aucun attribut ne doit être dépendant uniquement d'une partie d'une clé composite.
+- Assurer que chaque attribut non-clé dépende entièrement de la clé primaire, (ou des clés primaires dans le cas d'une clé composite.)  
+Donc, aucun attribut ne doit être dépendant uniquement d'une partie d'une clé composite.
 
 Cette structuration vise à garantir une dépendance complète des attributs par rapport à la clé primaire, évitant ainsi les dépendances partielles qui pourraient entraîner des anomalies de données.
 
 Supposons la table notes_cours dans laquelle on veut enregistrer la note obtenue par cours par étudiant :
+
+Ce qui est bien : La note appartient à un étudiant pour un cours (clé composite) Pour un cours X l'étudiant a une note.  
+
+La note dépend totalement de `ETUDIANT_ID` et de `COURS_ID`. Donc ici, rien à dire.    
+  
+Par contre, le nom du cours ne depends pas de toute la clé. Le nom du cours est dépendant de son `COURS_ID` Ici, le nom du cours doit être dans dans sa table et les hypopotames seront bien gardés.     
 
 | ETUDIANT_ID | COURS_ID | NOTE | NOM_COURS         |
 |-------------|----------|------|------------------|
@@ -112,13 +119,13 @@ Supposons la table notes_cours dans laquelle on veut enregistrer la note obtenue
 | 1           | 2        | 64   | Design Web       |
 
 
-Il existe plusieurs problématiques notables dans la disposition actuelle de la base de données :
+Il existe plusieurs autres problématiques notables dans la disposition actuelle de la base de données :
 
 1. **Gestion des doublons** : Il peut être difficile de gérer les doublons, particulièrement si l'on souhaite récupérer le nom d'un cours spécifique, tel que "Programmation 1". La présence de doublons peut compliquer l'extraction de données fiables.
 
 2. **Accès aux données après suppression** : Si un étudiant est supprimé de la base, l'accès aux informations du cours auquel il était inscrit, tel que "Design Web", pourrait être compromis. Cette situation pose un risque de perte d'information non négligeable.
 
-3. **Consistance des données** : En cas de modification du nom d'un cours, des erreurs peuvent survenir si la mise à jour n'est pas appliquée uniformément à toutes les occurrences. Cela peut entraîner des incohérences dans les noms des cours, affectant la fiabilité des données.
+3. **Consistance des données** : En cas de modification du nom d'un cours, des erreurs peuvent survenir si la mise à jour n'est pas appliquée uniformément à toutes les occurrences. Cela peut entraîner des incohérences dans les noms des cours, affectant la fiabilité des données. (Programmation 1 / P1 / Prog 1 / etc. )  
 
 4. **Ajout de nouveaux cours** : L'ajout de nouveaux cours à la base de données pourrait se heurter à des complications si aucun étudiant n'est encore inscrit pour recevoir des notes, ce qui rend difficile la gestion prévisionnelle des cours.
 
@@ -153,17 +160,18 @@ table __cours__
 
 Pour qu'une table soit conforme à la troisième forme normale (3FN), elle doit :
 
-- Satisfaire toutes les exigences de la deuxième forme normale (2FN), et par conséquent, celles de la première forme normale (1FN) également.
-- Assurer que tous les attributs non-clés dépendent uniquement de la clé primaire, et non d'autres attributs non-clés de la table.
+- Satisfaire toutes les exigences de la deuxième forme normale (2FN), et par conséquent, celles de la première forme normale (1FN) également.  
+- Assurer que tous les attributs non-clés dépendent uniquement de la clé primaire, et non d'autres attributs non-clés de la table.  
+  
+Considérons, à titre d'exemple, la table d'inventaire suivante :  
+  
+| EMPLOYE_ID (PK) | NOM      | PRENOM | CODE_DEPARTEMENT | NOM_DEPARTEMENT
+|-----------------|----------|--------|------------------|----------------|
+| 1               | GÉLINAS  | KEVEN  | INF              | INFORMATIQUE   |
+| 2               | GRATTON  | ROBERT | TAG              | ADMINISTRATION |
+| 3               | WICK     | JOHN   | AGR              | AGRICULTURE    |
 
-Considérons, à titre d'exemple, la table d'inventaire suivante :
-
-| ID | QUANTITE | ITEM_ID | DESCRIPTION             |
-|----|----------|---------|-------------------------|
-| 1  | 3        | 1       | Potion de soins mineures |
-| 2  | 11       | 2       | Épée de cuivre           |
-
-Dans cette table, l'attribut `DESCRIPTION` dépend de `ITEM_ID` et non directement de la clé primaire `ID`. Pour rendre la table conforme à la 3FN, il conviendrait de retirer l'attribut `DESCRIPTION` de cette table, à condition que cette information soit déjà contenue dans une table distincte associée aux `ITEM_ID*`(par exemple, une table `Items`). Cette séparation permet d'éliminer les dépendances transitives et d'assurer que chaque attribut non-clé est directement dépendant de la clé primaire seule, garantissant ainsi l'intégrité et la normalisation des données.
+Dans cette table, l'attribut `NOM_DEPARTEMENT` dépend de `CODE_DEPARTEMENT` et non directement de la clé primaire `EMPLOYE_ID`. Pour rendre la table conforme à la 3FN, il conviendrait de retirer l'attribut `NOM_DEPARTEMENT` de cette table, à condition que cette information soit déjà contenue dans une table distincte associée aux `CODE_DEPARTEMENT*`(par exemple, une table `DEPARTEMENTS`). Cette séparation permet d'éliminer les dépendances transitives et d'assurer que chaque attribut non-clé est directement dépendant de la clé primaire seule, garantissant ainsi l'intégrité et la normalisation des données.
 
 ## Impact de l'application de la règle
 
