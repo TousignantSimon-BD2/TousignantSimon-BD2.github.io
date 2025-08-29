@@ -690,6 +690,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#multiplicite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplicité
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -735,6 +744,75 @@
   
   <span class="md-ellipsis">
     Normalisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1NF_regles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1FN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2NF_regles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2FN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3NF_regles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3FN
     
   </span>
   
@@ -892,7 +970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mysql/types_jointures/" class="md-nav__link">
+      <a href="../../mys ql/types_jointures.md" class="md-nav__link">
         
   
   
@@ -2280,6 +2358,63 @@
 <p class="admonition-title">Astuce</p>
 <p>Les multiplicités sont importantes pour déterminer les contraintes. Un truc pour les lire est de commencer par le nom de l'entité, ensuite le verbe de l'association, la multiplicité et finalement la deuxième entité. Si on prend par exemple l'association Rédige, on va lire que l'auteur peut rédiger entre 0 et plusieurs livres (0..*). À l'inverse un livre peut être rédigé par au moins un auteur mais aussi par plusieurs (1..*).</p>
 </div>
+<h2 id="multiplicite">Multiplicité</h2>
+<table>
+<thead>
+<tr>
+<th>Signification</th>
+<th>Notation</th>
+<th>Remarques</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Un et un seul</td>
+<td><code>1..1</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Synonyme de un seul</td>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Zéro ou un</td>
+<td><code>0..1</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Un nombre quelconque incluant 0</td>
+<td><code>0..*</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Synonyme de 0..*</td>
+<td><code>*</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Au moins 1</td>
+<td><code>1..*</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Exactement n</td>
+<td><code>n</code></td>
+<td>Remplacer <code>n</code> par une valeur entière précise</td>
+</tr>
+<tr>
+<td>Entre n et m inclusif</td>
+<td><code>n..m</code></td>
+<td>Remplacer <code>n</code> et <code>m</code> par les bornes souhaitées</td>
+</tr>
+<tr>
+<td>Liste (union de cas)</td>
+<td><code>2..4,8,12,20..24</code></td>
+<td>Interprété comme : 2 à 4 <strong>OU</strong> 8 <strong>OU</strong> 12 <strong>OU</strong> 20 à 24</td>
+</tr>
+</tbody>
+</table>
 
 
 
