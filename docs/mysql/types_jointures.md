@@ -110,7 +110,7 @@ FROM joueurs j
 | Simms  | Jonah    | SqlIsGod   |
 | McNeill    | Garrett  | SqlIsGod   |
 | Sosa | Amy      | Error404   |
-| Fox      | Dina   | NULL       |
+| Fox      | Dina   |  NULL        |
 
 # RIGHT JOIN
 
